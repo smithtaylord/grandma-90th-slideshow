@@ -54,9 +54,8 @@
         <span class="time-display" v-if="duration > 0">{{ formatTime(currentTime) }} / {{ formatTime(duration) }}</span>
       </template>
       <div class="mode-switch">
-        <router-link v-if="mode === 'full'" to="/?mode=slideshow" class="sync-link">Photos Only</router-link>
-        <router-link v-else to="/" class="sync-link">Full Slideshow</router-link>
-        <router-link to="/sync" class="sync-link sync-link-secondary">Sync Tool</router-link>
+        <router-link v-if="mode === 'full'" to="/?mode=slideshow" class="mode-btn">Photos Only</router-link>
+        <router-link v-else to="/" class="mode-btn">Full Slideshow</router-link>
       </div>
     </div>
 
@@ -487,29 +486,28 @@ onUnmounted(() => {
   position: absolute;
   right: 1rem;
   display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.25rem;
+  align-items: center;
+}
+
+.mode-btn {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 6px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.mode-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .time-display {
   color: #ccc;
   font-family: monospace;
   font-size: 0.9rem;
-}
-
-.sync-link {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.8rem;
-  text-decoration: none;
-}
-
-.sync-link:hover {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.sync-link-secondary {
-  font-size: 0.7rem;
 }
 
 .speed-select {
