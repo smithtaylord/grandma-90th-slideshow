@@ -18,7 +18,7 @@ Re-run this script whenever you add new photos to SOURCE_DIR.
 import os
 import json
 from pathlib import Path
-from PIL import Image
+from PIL import Image, ImageOps
 import pillow_heif
 
 pillow_heif.register_heif_opener()
@@ -64,6 +64,7 @@ def convert_and_copy(source_dir, output_dir):
         out_path = os.path.join(output_dir, out_name)
 
         image = Image.open(img_path)
+        image = ImageOps.exif_transpose(image)
         if image.mode != "RGB":
             image = image.convert("RGB")
 
