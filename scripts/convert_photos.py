@@ -26,7 +26,7 @@ pillow_heif.register_heif_opener()
 SOURCE_DIR = r"C:\Users\smith\OneDrive\Desktop\Grandmas 90th"
 PROJECT_DIR = os.path.join(os.path.dirname(__file__), "..")
 OUTPUT_DIR = os.path.join(PROJECT_DIR, "public", "photos")
-CONFIG_PATH = os.path.join(PROJECT_DIR, "config.json")
+CONFIG_PATH = os.path.join(PROJECT_DIR, "public", "config.json")
 
 IMAGE_EXTENSIONS = {".jpg", ".jpeg", ".heic", ".heif"}
 MAX_WIDTH = 1920
