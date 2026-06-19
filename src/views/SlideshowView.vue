@@ -77,6 +77,13 @@
       </div>
     </div>
 
+    <button
+      class="fs-fab"
+      v-if="started && !ended"
+      @click="toggleFullscreen"
+      :title="isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'"
+    >&#x26F6;</button>
+
     <audio
       ref="audioEl"
       :src="mode === 'full' ? '/audio/song.mp3' : undefined"
@@ -230,14 +237,22 @@ function togglePlay() {
 }
 
 function toggleFullscreen() {
-  if (!document.fullscreenElement) {
-    document.documentElement.requestFullscreen().then(() => {
-      isFullscreen.value = true
-    }).catch(() => {})
+  const el = document.documentElement
+  const isFs = document.fullscreenElement || document.webkitFullscreenElement
+  if (!isFs) {
+    const req = el.requestFullscreen || el.webkitRequestFullscreen
+    if (req) {
+      const result = req.call(el)
+      if (result && result.then) result.then(() => isFullscreen.value = true).catch(() => {})
+      else isFullscreen.value = true
+    }
   } else {
-    document.exitFullscreen().then(() => {
-      isFullscreen.value = false
-    }).catch(() => {})
+    const exit = document.exitFullscreen || document.webkitExitFullscreen
+    if (exit) {
+      const result = exit.call(document)
+      if (result && result.then) result.then(() => isFullscreen.value = false).catch(() => {})
+      else isFullscreen.value = false
+    }
   }
 }
 
@@ -343,7 +358,7 @@ function onTouchStart(e) {
 }
 
 function onFullscreenChange() {
-  isFullscreen.value = !!document.fullscreenElement
+  isFullscreen.value = !!(document.fullscreenElement || document.webkitFullscreenElement)
 }
 
 onMounted(() => {
@@ -352,6 +367,7 @@ onMounted(() => {
   window.addEventListener('keydown', onKeyDown)
   window.addEventListener('touchstart', onTouchStart, { passive: true })
   document.addEventListener('fullscreenchange', onFullscreenChange)
+  document.addEventListener('webkitfullscreenchange', onFullscreenChange)
 })
 
 onUnmounted(() => {
@@ -359,6 +375,7 @@ onUnmounted(() => {
   window.removeEventListener('keydown', onKeyDown)
   window.removeEventListener('touchstart', onTouchStart)
   document.removeEventListener('fullscreenchange', onFullscreenChange)
+  document.removeEventListener('webkitfullscreenchange', onFullscreenChange)
   if (controlsTimer) clearTimeout(controlsTimer)
 })
 </script>
@@ -722,6 +739,37 @@ onUnmounted(() => {
 .nav-btn:disabled {
   opacity: 0.15;
   cursor: default;
+}
+
+/* --- Floating Fullscreen Button (always visible on iPad) --- */
+
+.fs-fab {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 40;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.45);
+  color: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  transition: background 0.2s, opacity 0.3s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.fs-fab:hover {
+  background: rgba(0, 0, 0, 0.7);
+  color: #fff;
 }
 
 /* --- Controls Bar --- */
