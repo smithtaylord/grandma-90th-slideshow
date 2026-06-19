@@ -88,15 +88,23 @@ def update_config(output_names, config_path):
     if os.path.exists(config_path):
         with open(config_path, "r") as f:
             existing = json.load(f)
-        old_photos = {p["file"]: p.get("caption", "") for p in existing.get("photos", [])}
+        old_photos = {
+            p["file"]: {
+                "caption": p.get("caption", ""),
+                "excludedFromMusic": p.get("excludedFromMusic", False),
+            }
+            for p in existing.get("photos", [])
+        }
     else:
         old_photos = {}
 
     photos = []
     for name in output_names:
+        old = old_photos.get(name, {})
         photos.append({
             "file": name,
-            "caption": old_photos.get(name, ""),
+            "caption": old.get("caption", ""),
+            "excludedFromMusic": old.get("excludedFromMusic", False),
         })
 
     config = {

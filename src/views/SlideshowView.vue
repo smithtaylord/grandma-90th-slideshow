@@ -2,7 +2,11 @@
   <div class="slideshow" @mousemove="showControls" @touchstart="showControls" @touchend="onSwipe">
     <div v-if="ended" class="end-card">
       <h1 class="end-title">Happy 90th Birthday,</h1>
-      <h1 class="end-title end-name">Grandma Liz!</h1>
+      <h1 class="end-name">Grandma Liz!</h1>
+      <div class="end-actions">
+        <button class="end-btn" @click="restart">Watch Again</button>
+        <router-link to="/?mode=slideshow" class="end-btn end-btn-secondary" @click="resetState">Photos Only</router-link>
+      </div>
     </div>
 
     <div v-else-if="!started" class="start-screen" @click="startSlideshow">
@@ -38,11 +42,11 @@
         {{ currentPhoto.caption }}
       </div>
 
-      <div class="photo-counter">{{ currentIndex + 1 }} / {{ config.photos.length }}</div>
+      <div class="photo-counter">{{ currentIndex + 1 }} / {{ activePhotos.length }}</div>
 
       <div v-if="mode === 'slideshow'" class="nav-arrows">
         <button class="nav-btn nav-prev" @click="prevPhoto" :disabled="currentIndex === 0">&#8249;</button>
-        <button class="nav-btn nav-next" @click="nextPhoto" :disabled="currentIndex === config.photos.length - 1">&#8250;</button>
+        <button class="nav-btn nav-next" @click="nextPhoto" :disabled="currentIndex === activePhotos.length - 1">&#8250;</button>
       </div>
     </div>
 
@@ -50,7 +54,7 @@
       <template v-if="mode === 'slideshow'">
         <button class="btn" @click="prevPhoto" :disabled="currentIndex === 0">&larr;</button>
         <button class="btn btn-play" @click="togglePlay">{{ isPlaying ? '❚❚' : '▶' }}</button>
-        <button class="btn" @click="nextPhoto" :disabled="currentIndex === config.photos.length - 1">&rarr;</button>
+        <button class="btn" @click="nextPhoto" :disabled="currentIndex === activePhotos.length - 1">&rarr;</button>
         <div class="speed-pills">
           <button
             v-for="speed in [3, 5, 8, 10]"
@@ -66,6 +70,7 @@
         <button class="btn" @click="nextPhoto">&rarr;</button>
         <span class="time-display" v-if="duration > 0">{{ formatTime(currentTime) }} / {{ formatTime(duration) }}</span>
       </template>
+      <button class="btn btn-icon" @click="toggleFullscreen" :title="isFullscreen ? 'Exit Fullscreen' : 'Fullscreen'">&#x26F6;</button>
       <div class="mode-switch">
         <router-link v-if="mode === 'full'" to="/?mode=slideshow" class="mode-btn">Photos Only</router-link>
         <router-link v-else to="/" class="mode-btn">Full Slideshow</router-link>
@@ -98,6 +103,7 @@ const currentIndex = ref(0)
 const currentTime = ref(0)
 const duration = ref(0)
 const isPlaying = ref(false)
+const isFullscreen = ref(false)
 const controlsVisible = ref(true)
 const slideDuration = ref(5)
 let controlsTimer = null
@@ -105,7 +111,17 @@ let timerInterval = null
 let touchStartX = 0
 let kenBurnsToggle = false
 
-const currentPhoto = computed(() => config.value.photos[currentIndex.value])
+const activePhotos = computed(() => {
+  const all = config.value.photos || []
+  if (mode.value === 'full') {
+    return all.filter(p => !p.excludedFromMusic)
+  }
+  const included = all.filter(p => !p.excludedFromMusic)
+  const excluded = all.filter(p => p.excludedFromMusic)
+  return [...included, ...excluded]
+})
+
+const currentPhoto = computed(() => activePhotos.value[currentIndex.value])
 
 const kenBurnsClass = computed(() => {
   kenBurnsToggle = !kenBurnsToggle
@@ -147,7 +163,9 @@ async function loadLyrics() {
 function startSlideshow() {
   started.value = true
   ended.value = false
+  currentIndex.value = 0
   if (mode.value === 'full' && audioEl.value) {
+    audioEl.value.currentTime = 0
     audioEl.value.play().catch(() => {})
     isPlaying.value = true
   } else {
@@ -155,6 +173,23 @@ function startSlideshow() {
     isPlaying.value = true
   }
   showControls()
+}
+
+function restart() {
+  ended.value = false
+  started.value = false
+  currentIndex.value = 0
+  currentTime.value = 0
+  if (audioEl.value) {
+    audioEl.value.currentTime = 0
+  }
+}
+
+function resetState() {
+  ended.value = false
+  started.value = false
+  currentIndex.value = 0
+  currentTime.value = 0
 }
 
 function startTimer() {
@@ -194,8 +229,20 @@ function togglePlay() {
   isPlaying.value = !isPlaying.value
 }
 
+function toggleFullscreen() {
+  if (!document.fullscreenElement) {
+    document.documentElement.requestFullscreen().then(() => {
+      isFullscreen.value = true
+    }).catch(() => {})
+  } else {
+    document.exitFullscreen().then(() => {
+      isFullscreen.value = false
+    }).catch(() => {})
+  }
+}
+
 function nextPhoto() {
-  if (currentIndex.value < config.value.photos.length - 1) {
+  if (currentIndex.value < activePhotos.value.length - 1) {
     currentIndex.value++
   } else if (mode.value === 'slideshow') {
     currentIndex.value = 0
@@ -222,7 +269,7 @@ function onSwipe(e) {
 function onTimeUpdate() {
   if (!audioEl.value) return
   currentTime.value = audioEl.value.currentTime
-  const totalPhotos = config.value.photos.length
+  const totalPhotos = activePhotos.value.length
   if (totalPhotos === 0 || !duration.value) return
   const photoDuration = duration.value / totalPhotos
   const newIndex = Math.min(
@@ -268,8 +315,7 @@ function onKeyDown(e) {
   if (ended.value) {
     if (e.code === 'Space' || e.code === 'Enter') {
       e.preventDefault()
-      ended.value = false
-      started.value = false
+      restart()
     }
     return
   }
@@ -286,10 +332,18 @@ function onKeyDown(e) {
     e.preventDefault()
     prevPhoto()
   }
+  if (e.code === 'KeyF') {
+    e.preventDefault()
+    toggleFullscreen()
+  }
 }
 
 function onTouchStart(e) {
   touchStartX = e.touches?.[0]?.clientX || 0
+}
+
+function onFullscreenChange() {
+  isFullscreen.value = !!document.fullscreenElement
 }
 
 onMounted(() => {
@@ -297,12 +351,14 @@ onMounted(() => {
   loadLyrics()
   window.addEventListener('keydown', onKeyDown)
   window.addEventListener('touchstart', onTouchStart, { passive: true })
+  document.addEventListener('fullscreenchange', onFullscreenChange)
 })
 
 onUnmounted(() => {
   stopTimer()
   window.removeEventListener('keydown', onKeyDown)
   window.removeEventListener('touchstart', onTouchStart)
+  document.removeEventListener('fullscreenchange', onFullscreenChange)
   if (controlsTimer) clearTimeout(controlsTimer)
 })
 </script>
@@ -439,7 +495,6 @@ onUnmounted(() => {
   height: 100vh;
   text-align: center;
   background: radial-gradient(ellipse at center, #0d1b2a 0%, #0a0a0a 70%, #000 100%);
-  animation: fadeInUp 1.5s ease-out;
 }
 
 .end-title {
@@ -449,14 +504,54 @@ onUnmounted(() => {
   color: #fff;
   letter-spacing: 0.01em;
   line-height: 1.3;
-  animation: fadeInUp 1.8s ease-out;
+  opacity: 0;
+  animation: fadeInUp 1.2s ease-out forwards;
 }
 
 .end-name {
   color: #e8c88a;
   font-size: 3.8rem;
   margin-top: 0.25rem;
-  animation-delay: 0.3s;
+  opacity: 0;
+  animation: fadeInUp 1.2s ease-out 0.3s forwards;
+}
+
+.end-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 0.8s forwards;
+}
+
+.end-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 24px;
+  padding: 0.7rem 2rem;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: background 0.2s, border-color 0.2s;
+  text-decoration: none;
+  letter-spacing: 0.02em;
+}
+
+.end-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.end-btn-secondary {
+  background: transparent;
+  border-color: rgba(232, 200, 138, 0.35);
+  color: #e8c88a;
+}
+
+.end-btn-secondary:hover {
+  background: rgba(232, 200, 138, 0.15);
+  border-color: rgba(232, 200, 138, 0.5);
 }
 
 /* --- Slide Container --- */
@@ -753,6 +848,17 @@ onUnmounted(() => {
   border-color: rgba(140, 180, 216, 0.6) !important;
 }
 
+.btn-icon {
+  padding: 0.4rem 0.6rem;
+  font-size: 1.1rem;
+  min-width: auto;
+  line-height: 1;
+}
+
+.btn-icon:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
 /* --- Mobile / iPad --- */
 
 @media (max-width: 768px) {
@@ -768,6 +874,10 @@ onUnmounted(() => {
   }
   .end-name {
     font-size: 2.4rem;
+  }
+  .end-btn {
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
   }
   .lyric-line {
     font-size: 1.3rem;

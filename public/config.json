@@ -5,224 +5,424 @@
   "transitionStyle": "crossfade",
   "photos": [
     {
-      "file": "photo001.jpg",
-      "caption": ""
+      "file": "photo078.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo069.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo064.jpg",
+      "caption": "",
+      "excludedFromMusic": false
     },
     {
       "file": "photo002.jpg",
-      "caption": ""
+      "caption": "",
+      "excludedFromMusic": false
     },
     {
-      "file": "photo003.jpg",
-      "caption": ""
+      "file": "photo065.jpg",
+      "caption": "",
+      "excludedFromMusic": false
     },
     {
-      "file": "photo004.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo005.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo006.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo007.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo008.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo009.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo010.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo011.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo012.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo013.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo014.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo015.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo016.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo017.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo018.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo019.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo020.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo021.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo022.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo023.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo024.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo025.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo026.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo027.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo028.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo029.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo030.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo031.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo032.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo033.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo034.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo035.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo036.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo037.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo038.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo039.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo040.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo041.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo042.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo043.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo044.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo045.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo046.jpg",
-      "caption": ""
+      "file": "photo001.jpg",
+      "caption": "",
+      "excludedFromMusic": false
     },
     {
       "file": "photo047.jpg",
-      "caption": ""
+      "caption": "",
+      "excludedFromMusic": false
     },
     {
-      "file": "photo048.jpg",
-      "caption": ""
+      "file": "photo005.jpg",
+      "caption": "",
+      "excludedFromMusic": false
     },
     {
-      "file": "photo049.jpg",
-      "caption": ""
+      "file": "photo020.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo059.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo072.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo081.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo075.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo016.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo029.jpg",
+      "caption": "",
+      "excludedFromMusic": false
     },
     {
       "file": "photo050.jpg",
-      "caption": ""
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo046.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo030.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo058.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo077.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo042.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo021.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo073.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo071.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo027.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo070.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo006.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo076.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo012.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo084.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo080.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo061.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo014.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo025.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo009.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo031.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo010.jpg",
+      "caption": "",
+      "excludedFromMusic": false
     },
     {
       "file": "photo051.jpg",
-      "caption": ""
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo003.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo056.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo038.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo011.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo023.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo017.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo082.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo032.jpg",
+      "caption": "",
+      "excludedFromMusic": false
     },
     {
       "file": "photo052.jpg",
-      "caption": ""
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo040.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo034.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo035.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo036.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo037.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo041.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo044.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo048.jpg",
+      "caption": "",
+      "excludedFromMusic": false
     },
     {
       "file": "photo053.jpg",
-      "caption": ""
-    },
-    {
-      "file": "photo054.jpg",
-      "caption": ""
+      "caption": "",
+      "excludedFromMusic": false
     },
     {
       "file": "photo055.jpg",
-      "caption": ""
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo057.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo060.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo062.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo066.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo068.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo067.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo074.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo079.jpg",
+      "caption": "",
+      "excludedFromMusic": false
+    },
+    {
+      "file": "photo018.jpg",
+      "caption": "",
+      "excludedFromMusic": true
+    },
+    {
+      "file": "photo026.jpg",
+      "caption": "",
+      "excludedFromMusic": true
+    },
+    {
+      "file": "photo028.jpg",
+      "caption": "",
+      "excludedFromMusic": true
+    },
+    {
+      "file": "photo024.jpg",
+      "caption": "",
+      "excludedFromMusic": true
+    },
+    {
+      "file": "photo019.jpg",
+      "caption": "",
+      "excludedFromMusic": true
+    },
+    {
+      "file": "photo043.jpg",
+      "caption": "",
+      "excludedFromMusic": true
+    },
+    {
+      "file": "photo004.jpg",
+      "caption": "",
+      "excludedFromMusic": true
+    },
+    {
+      "file": "photo039.jpg",
+      "caption": "",
+      "excludedFromMusic": true
+    },
+    {
+      "file": "photo049.jpg",
+      "caption": "",
+      "excludedFromMusic": true
+    },
+    {
+      "file": "photo045.jpg",
+      "caption": "",
+      "excludedFromMusic": true
+    },
+    {
+      "file": "photo015.jpg",
+      "caption": "",
+      "excludedFromMusic": true
+    },
+    {
+      "file": "photo008.jpg",
+      "caption": "",
+      "excludedFromMusic": true
+    },
+    {
+      "file": "photo007.jpg",
+      "caption": "",
+      "excludedFromMusic": true
+    },
+    {
+      "file": "photo013.jpg",
+      "caption": "",
+      "excludedFromMusic": true
+    },
+    {
+      "file": "photo054.jpg",
+      "caption": "",
+      "excludedFromMusic": true
+    },
+    {
+      "file": "photo063.jpg",
+      "caption": "",
+      "excludedFromMusic": true
+    },
+    {
+      "file": "photo033.jpg",
+      "caption": "",
+      "excludedFromMusic": true
+    },
+    {
+      "file": "photo022.jpg",
+      "caption": "",
+      "excludedFromMusic": true
+    },
+    {
+      "file": "photo083.jpg",
+      "caption": "",
+      "excludedFromMusic": true
     }
   ]
 }
